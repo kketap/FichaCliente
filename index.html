@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- libreria bootstrap -->
+    <script src="jspdf.min.js"></script> <!-- libreria jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> <!-- libreria jsPDF -->
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <!-- libreria para la firma por canvasl -->
+    <script src="app.js"></script>
+
+    <style>
+        .razon {
+            width: 10ch;
+        }
+    </style> <!-- Dandole "style" al input para aumentar su tamaño a medida que se escribe -->
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="col">
+            <div class="col-md-8 offset-md-2">
+                <h1 style="text-align: center;">Formulario Ficha de Cliente Persona Jurídica</h1>
+                <hr>
+                <form id="form">
+                    <div class="row mb-3">
+                        <h2>Identificación del Cliente (Empresa)</h2> <!-- 1 -->
+                        <br>
+                        <br>
+                        <div class="col-md-6"> <!-- Razón Social -->
+                            <label for="razon" class="form-label">Razón Social</label>
+                            <input type="text" oninput="increaseWidth()" name="razon" placeholder="Razón Social"
+                                class="form-control" id="razon">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="rut" class="form-label">RUT</label>
+                            <input type="text" name="rut" placeholder="RUT" class="form-control" id="rut">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nomFantasia" class="form-label">Nombre de Fantasía</label>
+                            <input type="text" name="nomFantasia" placeholder="Nombre de Fantasía" class="form-control"
+                                id="nomFantasia">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="giro" class="form-label">Giro o Actividad</label>
+                            <input type="text" name="giro" placeholder="Giro o Actividad" class="form-control"
+                                id="giro">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="residencia" class="form-label">País de Residencia</label>
+                            <input type="text" name="residencia" placeholder="País de Residencia" class="form-control"
+                                id="residencia">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="direccion" class="form-label">Dirección</label>
+                            <input type="text" name="direccion" placeholder="Dirección" class="form-control"
+                                id="direccion">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="comuna" class="form-label">Comuna</label>
+                            <input type="text" name="comuna" placeholder="Comuna" class="form-control" id="comuna">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="correo" class="form-label">Correo Electrónico</label>
+                            <input type="email" name="correo" placeholder="Correo Electrónico" class="form-control"
+                                id="correo">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono1" class="form-label">Teléfono 1</label>
+                            <input type="tel" name="telefono1" placeholder="Teléfono 1" class="form-control"
+                                id="telefono1" maxlength="20">
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono2" class="form-label">Teléfono 2</label>
+                            <input type="tel" name="telefono2" placeholder="Teléfono 2" class="form-control"
+                                id="telefono2">
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <h2>Identificación del Gerente o Representante Legal</h2> <!-- 2 -->
+                        <br>
+                        <br>
+                        <div class="col-md-6">
+                            <label for="nombreGerente" class="form-label">Nombre Completo</label>
+                            <input type="text" name="nombreGerente" placeholder="Nombre Completo" class="form-control"
+                                id="nombreGerente">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="rutGerente" class="form-label">RUT</label>
+                            <input type="text" name="rutGerente" placeholder="RUT" class="form-control" id="rutGerente">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nacionalidadGerente" class="form-label">Nacionalidad</label>
+                            <input type="text" name="nacionalidadGerente" placeholder="Nacionalidad"
+                                class="form-control" id="nacionalidadGerente">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="correoGerente" class="form-label">Correo Electrónico</label>
+                            <input type="email" name="correoGerente" placeholder="Correo Electrónico"
+                                class="form-control" id="correoGerente">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="direccionGerente" class="form-label">Dirección</label>
+                            <input type="text" name="direccionGerente" placeholder="Dirección" class="form-control"
+                                id="direccionGerente">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="comunaGerente" class="form-label">Comuna</label>
+                            <input type="text" name="comunaGerente" placeholder="Comuna" class="form-control"
+                                id="comunaGerente">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="estadoCivilGerente" class="form-label">Estado Civil</label>
+                            <input type="text" name="estadoCivilGerente" placeholder="Estado Civil" class="form-control"
+                                id="estadoCivilGerente">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono1Gerente" class="form-label">Teléfono 1</label>
+                            <input type="tel" name="telefono1Gerente" placeholder="Teléfono 1" class="form-control"
+                                id="telefono1Gerente">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono2Gerente" class="form-label">Telefóno 2</label>
+                            <input type="tel" name="telefono2Gerente" placeholder="Telefóno 2" class="form-control"
+                                id="telefono2Gerente">
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary mb-16" id="agregarGerenteBtn"> Agregar Otro Gerente
+                            o Representante Legal</button>
+                        <div id="camposGerente"></div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <h2>Apoderados (Máximo 7)</h2> <!-- 3 -->
+                        <br>
+                        <br>
+                        <div class="col-md-6">
+                            <label for="nombreApoderado" class="form-label">Nombre Completo</label>
+                            <input type="text" name="nombreApoderado" placeholder="Nombre Completo" class="form-control"
+                                id="nombreApoderado">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="rutApoderado" class="form-label">RUT</label>
+                            <input type="text" name="rutApoderado" placeholder="RUT" class="form-control"
+                                id="rutApoderado">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nacionalidadApoderado" class="form-label">Nacionalidad</label>
+                            <input type="text" name="nacionalidadApoderado" placeholder="Nacionalidad"
+                                class="form-control" id="nacionalidadApoderado">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="correoApoderado" class="form-label">Correo Electrónico</label>
+                            <input type="email" name="correoApoderado" placeholder="Correo Electrónico"
+                                class="form-control" id="correoApoderado">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="direccionApoderado" class="form-label">Dirección</label>
+                            <input type="text" name="direccionApoderado" placeholder="Dirección" class="form-control"
+                                id="direccionApoderado">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="comunaApoderado" class="form-label">Comuna</label>
+                            <input type="text" name="comunaApoderado" placeholder="Comuna" class="form-control"
+                                id="comunaApoderado">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="estadoCivilApoderado" class="form-label">Estado Civil</label>
+                            <input type="text" name="estadoCivilApoderado" placeholder="Estado Civil"
+                                class="form-control" id="estadoCivilApoderado">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono1Apoderado" class="form-label">Telefóno 1</label>
+                            <input type="tel" name="telefono1Apoderado" placeholder="Telefóno 1" class="form-control"
+                                id="telefono1Apoderado">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono2Apoderado" class="form-label">Telefóno 2</label>
+                            <input type="tel" name="telefono2Apoderado" placeholder="Telefóno 2" class="form-control"
+                                id="telefono2Apoderado">
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary mb-16" id="agregarCampoBtn"> Agregar
+                            Apoderados</button>
+                        <div id="campos">
+                            <!-- Los Apoderados se agregan en este div -->
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <h2>Otras personas autorizadas para dar órdenes a AAM S.A. (Máximo 3)</h2> <!-- 4 -->
+                        <br>
+                        <br>
+                        <div class="col-md-6">
+                            <label for="nombreAAM" class="form-label">Nombre Completo</label>
+                            <input type="text" name="nombreAAM" placeholder="Nombre Completo" class="form-control"
+                                id="nombreAAM">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="rutAAM" class="form-label">RUT</label>
+                            <input type="text" name="rutAAM" placeholder="RUT" class="form-control" id="rutAAM">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nacionalidadAAM" class="form-label">Nacionalidad</label>
+                            <input type="text" name="nacionalidadAAM" placeholder="Nacionalidad" class="form-control"
+                                id="nacionalidadAAM">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="correoAAM" class="form-label">Correo Electrónico</label>
+                            <input type="email" name="correoAAM" placeholder="Correo Electrónico" class="form-control"
+                                id="correoAAM">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="direccionAAM" class="form-label">Dirección</label>
+                            <input type="text" name="direccionAAM" placeholder="Dirección" class="form-control"
+                                id="direccionAAM">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="comunaAAM" class="form-label">Comuna</label>
+                            <input type="text" name="comunaAAM" placeholder="Comuna" class="form-control"
+                                id="comunaAAM">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="estadoCivilAAM" class="form-label">Estado Civil</label>
+                            <input type="text" name="estadoCivilAAM" placeholder="Estado Civil" class="form-control"
+                                id="estadoCivilAAM">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono1AAM" class="form-label">Telefóno 1</label>
+                            <input type="tel" name="telefono1AAM" placeholder="Telefóno 1" class="form-control"
+                                id="telefono1AAM">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono2AAM" class="form-label">Telefóno 2</label>
+                            <input type="tel" name="telefono2AAM" placeholder="Telefóno 2" class="form-control"
+                                id="telefono2AAM">
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary mb-16" id="agregarAAMBtn"> Agregar Personas
+                            Autorizadas</button>
+                        <br>
+                        <div id="camposAAM"> <!-- Aquí se agregan los campos AAM -->
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <h2>Medios para Instruir</h2>
+                        <br>
+                        <h4>Seleccione 1 opción</h4> <!-- 5 -->
+                        <br>
+                        <br>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionMedios" class="form-check-input" id="instrEscrita"
+                                        value="0">
+                                    <label for="instrEscrita" class="form-check-label">Solo Instrucciones
+                                        Escritas</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionMedios" class="form-check-input" id="mediosCorreo"
+                                        value="1">
+                                    <label for="mediosCorreo" class="form-check-label">Correo</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="inputMediosCorreo" class="form-label">Indicar Correo : </label>
+                                    <input type="email" class="form-control" id="inputMediosCorreo">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <h2>Naturaleza de la Relación con AAM S.A</h2>
+                        <br>
+                        <h4>Seleccione 1 opción</h4> <!-- 6 -->
+                        <br>
+                        <br>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionRelacionNatuAAM" class="form-check-input"
+                                        id="invertirNatuAAM" value="0">
+                                    <label for="invertirNatuAAM" class="form-check-label">Invertir</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionRelacionNatuAAM" class="form-check-input"
+                                        id="rescateNatuAAM" value="1">
+                                    <label for="rescateNatuAAM" class="form-check-label">Rescate</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionRelacionNatuAAM" class="form-check-input"
+                                        id="otroNatuAAM" value="2">
+                                    <label for="rescateNatuAAM" class="form-check-label">Otro (completar)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <label for="inputNatuAAMotros" class="form-label">Otro : </label>
+                                <input type="text" class="form-control" id="inputNatuAAMotros">
+
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <h2>Relación Cliente con AAM S.A</h2>
+                        <br>
+                        <h4>Seleccione 1 opción</h4> <!-- 6 -->
+                        <br>
+                        <br>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionRelacionAAM" class="form-check-input"
+                                        id="opcionAccionista" value="0">
+                                    <label for="opcionAccionista" class="form-check-label">Accionista</label>
+                                </div>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionRelacionAAM" class="form-check-input"
+                                        id="opcionDirector" value="1">
+                                    <label for="opcionDirector" class="form-check-label">Director</label>
+                                </div>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionRelacionAAM" class="form-check-input"
+                                        id="opcionEmpleador" value="2">
+                                    <label for="opcionEmpleador" class="form-check-label">Empleado</label>
+                                </div>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionRelacionAAM" class="form-check-input"
+                                        id="opcionNoRelacionado" value="3">
+                                    <label for="opcionNoRelacionado" class="form-check-label">No Relacionado</label>
+                                </div>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionRelacionAAM" class="form-check-input"
+                                        id="opcionOtro" value="4">
+                                    <label for="opcionOtro" class="form-check-label">Otro</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div>
+                                    <label for="inputRelacionAAM" class="form-label">Comentario Otro : </label>
+                                    <input type="text" class="form-control" id="inputRelacionAAM">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <h2>Destino de Información al Cliente</h2>
+                        <br>
+                        <h4>Seleccione 1 opción</h4> <!-- 7 -->
+                        <br>
+                        <br>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionInfoCliente" class="form-check-input"
+                                        id="direcComercial" value="0">
+                                    <label for="direcComercial" class="form-check-label">Dirección Comercial</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionInfoCliente" class="form-check-input"
+                                        id="correoInfoCliente" value="1">
+                                    <label for="correoInfoCliente" class="form-check-label">Correo Electrónico</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionInfoCliente" class="form-check-input"
+                                        id="noEnviarInfoCliente" value="2">
+                                    <label for="noEnviarInfoCliente" class="form-check-label">No Enviar
+                                        Correspondencia</label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <h2>Cuentas Corrientes</h2> <!-- 8 -->
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-md-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Moneda</th>
+                                        <th scope="col">Banco</th>
+                                        <th scope="col">Tipo de Cuenta</th>
+                                        <th scope="col">N° de Cuenta</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">CLP</th>
+                                        <td><input type="text" id="bancoCLP"></td>
+                                        <td><input type="text" id="tipoCuentaCLP"></td>
+                                        <td><input type="number" id="nCuentaCLP"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">USS</th>
+                                        <td><input type="text" id="bancoUSS"></td>
+                                        <td><input type="text" id="tipoCuentaUSS"></td>
+                                        <td><input type="number" id="nCuentaUSS"></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-primary mb-16" id="agregarCtasCorrientes">Agregar otra
+                            Cuenta Corriente</button>
+                        <br>
+                        <div id="camposCtasCorrientes"> <!-- Aquí se agrega la cuenta corriente-->
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <h2>Nivel de Renta</h2>
+                        <br>
+                        <h4>Seleccione 1 opción</h4> <!-- 9 -->
+                        <br>
+                        <br>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionNivelRenta" class="form-check-input"
+                                        id="ceroUnoRenta" value="0">
+                                    <label for="ceroUnoRenta" class="form-check-label">$0 a $20.000.000</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionNivelRenta" class="form-check-input"
+                                        id="unoCincoRenta" value="1">
+                                    <label for="unoCincoRenta" class="form-check-label">$20.000.001 a
+                                        $50.000.000</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionNivelRenta" class="form-check-input"
+                                        id="cincoMasRenta" value="2">
+                                    <label for="cincoMasRenta" class="form-check-label">$50.000.001 a
+                                        $100.000.000</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionNivelRenta" class="form-check-input"
+                                        id="cincoMasRenta" value="3">
+                                    <label for="cincoMasRenta" class="form-check-label">$100.000.001 o más</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div>
+                                <label for="inputFuenteRenta" class="form-label">Fuente de Ingresos : </label>
+                                <input type="text" class="form-control" id="inputFuenteRenta">
+                            </div>
+                            <br>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <hr>
+                        <h2>Patrimonio</h2>
+                        <br>
+                        <h4>Seleccione 1 opción</h4> <!-- 10 -->
+                        <br>
+                        <br>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionPatrimonio" class="form-check-input"
+                                        id="ceroDiezPatrimonio" value="0">
+                                    <label for="ceroDiezPatrimonio" class="form-check-label">$0 a $50.000.000</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionPatrimonio" class="form-check-input"
+                                        id="diezCincuentaPatri" value="1">
+                                    <label for="diezCincuentaPatri" class="form-check-label">$50.000.001 a
+                                        $500.000.000</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionPatrimonio" class="form-check-input"
+                                        id="cincuentaMasPatri" value="2">
+                                    <label for="cincuentaMasPatri" class="form-check-label">$500.000.001 a $1.000
+                                        Millones</label>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" name="opcionPatrimonio" class="form-check-input"
+                                        id="cincuentaMasPatri" value="3">
+                                    <label for="cincuentaMasPatri" class="form-check-label">$1.001 Millones o
+                                        más</label>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <hr>
+                            <h2>Actividades del Cliente</h2>
+                            <br>
+                            <h4>Seleccione 1 opción</h4> <!-- 11 -->
+                            <br>
+                            <br>
+                            <div class="row mb-3">
+                                <div class="col-md-9">
+
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="casinoActCliente" value="0">
+                                        <label for="casinoActCliente" class="form-check-label">Casino-Juego</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="notariaActCliente" value="1">
+                                        <label for="notariaActCliente" class="form-check-label">Notaría</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="agVieajesActCliente" value="2">
+                                        <label for="agVieajesActCliente" class="form-check-label">Agencia de
+                                            viajes</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="invTuristicasActCliente" value="3">
+                                        <label for="invTuristicasActCliente" class="form-check-label">Inv.
+                                            Turísticas</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="construActCliente" value="4">
+                                        <label for="construActCliente" class="form-check-label">Construcción</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="invEmpresasActCliente" value="5">
+                                        <label for="automotorasActCliente" class="form-check-label">Inv. De
+                                            Empresas</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="automotorasActCliente" value="6">
+                                        <label for="automotorasActCliente" class="form-check-label">Automotoras</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="casasCambioActCliente" value="7">
+                                        <label for="casasCambioActCliente" class="form-check-label">Casas de
+                                            Cambio</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="raicesActCliente" value="8">
+                                        <label for="raicesActCliente" class="form-check-label">Conservador de Bienes
+                                            Raíces</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="aduanaActCliente" value="9">
+                                        <label for="aduanaActCliente" class="form-check-label">Agentes de Aduana</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="lucroActCliente" value="10">
+                                        <label for="lucroActCliente" class="form-check-label">Act. Sin Fines de
+                                            Lucro</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" name="opcionActCliente" class="form-check-input"
+                                            id="otrosActCliente" value="11">
+                                        <label for="otrosActCliente" class="form-check-label">Otros (completar)</label>
+                                    </div>
+                                    <br>
+                                    <div class="col-md-9">
+                                        <div>
+                                            <label for="inputActCliente" class="form-label">Otros : </label>
+                                            <input type="text" class="form-control" id="inputActCliente">
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <hr>
+                            <h2>Pie de Firma</h2> <!-- 12 -->
+                            <br>
+                            <br>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="nombreGerente" class="form-label">Nombre completo</label>
+                                    <input type="text" class="form-control" id="nombreGerente">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="rutGerente" class="form-label">RUT</label>
+                                    <input type="text" class="form-control" id="rutGerente">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nomCargo" class="form-label">Nombre del Cargo</label>
+                                    <input type="text" class="form-control" id="nomCargo">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="fecha" class="form-label">Fecha</label>
+                                    <span id="fecha" class="form-control"></span>
+
+                                    <script> // Obtener la fecha actual
+                                        const fechaSpan = document.getElementById("fecha");
+                                        const date = new Date();
+                                        const formattedDate = date.toLocaleDateString("es-CL");
+                                        fechaSpan.textContent = formattedDate;
+
+                                    </script>
+
+                                </div>
+
+                                <span class="d-block pb-2">Firma digital aqui</span>
+                                <div class="signature mb-2" style="width: 100%; height: 200px;">
+                                    <canvas id="signature-canvas"
+                                        style="border: 1px dashed red; width: 100%; height: 200px;"></canvas>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <button type="submit" class="btn btn-primary mb-4">Generar PDF</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script> // funcion agregar Gerente
+        document.addEventListener('DOMContentLoaded', function () {
+            var agregarCampoBtn = document.getElementById('agregarGerenteBtn');
+            var camposContainer = document.getElementById('camposGerente');
+            var campoIndex = 2;
+
+            agregarCampoBtn.addEventListener('click', function () {
+                var nuevoCampoHTML = `
+                    <!-- código HTML-->
+                    <div class="col-md-6">
+                            <label for="nombreGerente${campoIndex}" class="form-label">Nombre Completo(${campoIndex})</label>
+                            <input type="text" name="nombreGerente${campoIndex}" placeholder="Nombre Completo(${campoIndex})" class="form-control" id="nombreGerente${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="rutGerente${campoIndex}" class="form-label">RUT(${campoIndex})</label>
+                            <input type="text" name="rutGerente${campoIndex}" placeholder="RUT(${campoIndex})" class="form-control" id="rutGerente${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nacionalidadGerente${campoIndex}" class="form-label">Nacionalidad(${campoIndex})</label>
+                            <input type="text" name="nacionalidadGerente${campoIndex}" placeholder="Nacionalidad(${campoIndex})" class="form-control"
+                                id="nacionalidadGerente${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="correoGerente${campoIndex}" class="form-label">Correo Electrónico(${campoIndex})</label>
+                            <input type="email" name="correoGerente${campoIndex}" placeholder="Correo Electrónico(${campoIndex})"
+                                class="form-control" id="correoGerente${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="direccionGerente${campoIndex}" class="form-label">Dirección(${campoIndex})</label>
+                            <input type="text" name="direccionGerente${campoIndex}" placeholder="Dirección(${campoIndex})" class="form-control"
+                                id="direccionGerente${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="comunaGerente${campoIndex}" class="form-label">Comuna(${campoIndex})</label>
+                            <input type="text" name="comunaGerente${campoIndex}" placeholder="Comuna(${campoIndex})" class="form-control"
+                                id="comunaGerente${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="estadoCivilGerente${campoIndex}" class="form-label">Estado Civil(${campoIndex})</label>
+                            <input type="text" name="estadoCivilGerente${campoIndex}" placeholder="Estado Civil(${campoIndex})" class="form-control"
+                                id="estadoCivilGerente${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono1Gerente${campoIndex}" class="form-label">Teléfono 1(${campoIndex})</label>
+                            <input type="tel" name="telefono1Gerente${campoIndex}" placeholder="Teléfono 1(${campoIndex})" class="form-control"
+                                id="telefono1Gerente${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono2Gerente${campoIndex}" class="form-label">Telefóno 2(${campoIndex})</label>
+                            <input type="tel" name="telefono2Gerente${campoIndex}" placeholder="Telefóno 2(${campoIndex})" class="form-control"
+                                id="telefono2Gerente${campoIndex}">
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                `;
+                var nuevoCampoContainer = document.createElement('div');
+                nuevoCampoContainer.classList.add('row');
+                nuevoCampoContainer.innerHTML = nuevoCampoHTML;
+
+                camposContainer.appendChild(nuevoCampoContainer);
+
+                campoIndex++;
+            });
+        });
+
+    </script>
+
+
+    <script> // funcion agregar apoderados
+        document.addEventListener('DOMContentLoaded', function () {
+            var agregarCampoBtn = document.getElementById('agregarCampoBtn');
+            var camposContainer = document.getElementById('campos');
+            var campoIndex = 2;
+
+            agregarCampoBtn.addEventListener('click', function () {
+                var nuevoCampoHTML = `
+                    <!-- código HTML-->
+                    <div class="col-md-6">
+                        <label for="nombreApoderado${campoIndex}" class="form-label">Nombre Completo(${campoIndex})</label>
+                        <input type="text" name="nombreApoderado${campoIndex}" placeholder="Nombre Completo(${campoIndex})" class="form-control"
+                            id="nombreApoderado${campoIndex}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="rutApoderado${campoIndex}" class="form-label">RUT (${campoIndex})</label>
+                        <input type="text" name="rutApoderado${campoIndex}" placeholder="RUT (${campoIndex})" class="form-control"
+                            id="rutApoderado${campoIndex}">
+                    </div>
+                    <div class="col-md-6">
+                       <label for="nacionalidadApoderado${campoIndex}" class="form-label">Nacionalidad (${campoIndex})</label>
+                       <input type="text" name="nacionalidadApoderado${campoIndex}" placeholder="Nacionalidad (${campoIndex})" class="form-control" id="nacionalidadApoderado${campoIndex}">
+                    </div>
+                    <div class="col-md-6">
+                       <label for="correoApoderado${campoIndex}" class="form-label">Correo Electrónico (${campoIndex})</label>
+                       <input type="email" name="correoApoderado${campoIndex}" placeholder="Correo Electrónico (${campoIndex})"
+                       class="form-control" id="correoApoderado${campoIndex}">
+                    </div>
+                    <div class="col-md-6">
+                       <label for="direccionApoderado${campoIndex}" class="form-label">Dirección (${campoIndex})</label>
+                       <input type="text" name="direccionApoderado${campoIndex}" placeholder="Dirección (${campoIndex})" class="form-control"
+                       id="direccionApoderado${campoIndex}">
+                    </div>
+                    <div class="col-md-6">
+                       <label for="comunaApoderado${campoIndex}" class="form-label">Comuna (${campoIndex})</label>
+                       <input type="text" name="comunaApoderado${campoIndex}" placeholder="Comuna (${campoIndex})" class="form-control"
+                       id="comunaApoderado${campoIndex}">
+                    </div>
+                   <div class="col-md-6">
+                       <label for="estadoCivilApoderado${campoIndex}" class="form-label">Estado Civil (${campoIndex})</label>
+                       <input type="text" name="estadoCivilApoderado${campoIndex}" placeholder="Estado Civil (${campoIndex})"
+                       class="form-control" id="estadoCivilApoderado${campoIndex}">
+                    </div>
+                    <div class="col-md-6">
+                       <label for="telefono1Apoderado${campoIndex}" class="form-label">Telefóno 1 (${campoIndex})</label>
+                       <input type="tel" name="telefono1Apoderado${campoIndex}" placeholder="Telefóno 1 (${campoIndex})" class="form-control"
+                       id="telefono1Apoderado${campoIndex}">
+                    </div>
+                   <div class="col-md-6">
+                       <label for="telefono2Apoderado${campoIndex}" class="form-label">Telefóno 2 (${campoIndex})</label>
+                       <input type="tel" name="telefono2Apoderado${campoIndex}" placeholder="Telefóno 2 (${campoIndex})" class="form-control"
+                       id="telefono2Apoderado${campoIndex}">
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                `;
+                var nuevoCampoContainer = document.createElement('div');
+                nuevoCampoContainer.classList.add('row');
+                nuevoCampoContainer.innerHTML = nuevoCampoHTML;
+
+                camposContainer.appendChild(nuevoCampoContainer);
+
+                campoIndex++;
+            });
+        });
+
+    </script>
+
+
+    <script> // funcion agregar AAM
+        document.addEventListener('DOMContentLoaded', function () {
+            var agregarAAMBtn = document.getElementById('agregarAAMBtn');
+            var camposContainerAAM = document.getElementById('camposAAM');
+            var campoIndex = 2;
+
+            agregarAAMBtn.addEventListener('click', function () {
+                var nuevoCampoHTML = `
+                <!-- código HTML-->
+                        <div class="col-md-6">
+                            <label for="nombreAAM${campoIndex}" class="form-label">Nombre Completo(${campoIndex})</label>
+                            <input type="text" name="nombreAAM${campoIndex}" placeholder="Nombre Completo(${campoIndex})" class="form-control"
+                                id="nombreAAM${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="rutAAM${campoIndex}" class="form-label">RUT (${campoIndex})</label>
+                            <input type="text" name="rutAAM${campoIndex}" placeholder="RUT (${campoIndex})" class="form-control" id="rutAAM${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="nacionalidadAAM${campoIndex}" class="form-label">Nacionalidad (${campoIndex})</label>
+                            <input type="text" name="nacionalidadAAM${campoIndex}" placeholder="Nacionalidad (${campoIndex})" class="form-control"
+                                id="nacionalidadAAM${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="correoAAM${campoIndex}" class="form-label">Correo Electrónico (${campoIndex})</label>
+                            <input type="email" name="correoAAM${campoIndex}" placeholder="Correo Electrónico (${campoIndex})" class="form-control"
+                                id="correoAAM${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="direccionAAM${campoIndex}" class="form-label">Dirección (${campoIndex})</label>
+                            <input type="text" name="direccionAAM${campoIndex}" placeholder="Dirección (${campoIndex})" class="form-control"
+                                id="direccionAAM${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="comunaAAM${campoIndex}" class="form-label">Comuna (${campoIndex})</label>
+                            <input type="text" name="comunaAAM${campoIndex}" placeholder="Comuna (${campoIndex})" class="form-control"
+                                id="comunaAAM${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="estadoCivilAAM${campoIndex}" class="form-label">Estado Civil (${campoIndex})</label>
+                            <input type="text" name="estadoCivilAAM${campoIndex}" placeholder="Estado Civil (${campoIndex})" class="form-control"
+                                id="estadoCivilAAM${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono1AAM${campoIndex}" class="form-label">Telefóno 1 (${campoIndex})</label>
+                            <input type="tel" name="telefono1AAM${campoIndex}" placeholder="Telefóno 1 (${campoIndex})" class="form-control"
+                                id="telefono1AAM${campoIndex}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telefono2AAM${campoIndex}" class="form-label">Telefóno 2 (${campoIndex})</label>
+                            <input type="tel" name="telefono2AAM${campoIndex}" placeholder="Telefóno 2 (${campoIndex})" class="form-control"
+                                id="telefono2AAM${campoIndex}">
+                        </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            `;
+                var nuevoCampoContainer = document.createElement('div');
+                nuevoCampoContainer.classList.add('row');
+                nuevoCampoContainer.innerHTML = nuevoCampoHTML;
+
+                camposContainerAAM.appendChild(nuevoCampoContainer);
+
+                campoIndex++;
+            });
+        });
+
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () { //agregar cta corriente
+            var agregarCampoBtn = document.getElementById('agregarCtasCorrientes');
+            var camposContainer = document.getElementById('camposCtasCorrientes');
+            var campoIndex = 2;
+
+            agregarCampoBtn.addEventListener('click', function () {
+                var nuevoCampoHTML = `
+            <!-- Código HTML para agregar campos -->
+            <div class="col-md-6">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Moneda</th>
+                                        <th scope="col">Banco</th>
+                                        <th scope="col">Tipo de Cuenta</th>
+                                        <th scope="col">N° de Cuenta</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">CLP</th>
+                                        <td><input type="text" id="bancoCLP${campoIndex}"></td>
+                                        <td><input type="text" id="tipoCuentaCLP${campoIndex}"></td>
+                                        <td><input type="number" id="nCuentaCLP${campoIndex}"></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">USS</th>
+                                        <td><input type="text" id="bancoUSS${campoIndex}"></td>
+                                        <td><input type="text" id="tipoCuentaUSS${campoIndex}"></td>
+                                        <td><input type="number" id="nCuentaUSS${campoIndex}"></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                                      `;
+                var nuevoCampoContainer = document.createElement('div');
+                nuevoCampoContainer.classList.add('row');
+                nuevoCampoContainer.innerHTML = nuevoCampoHTML;
+
+                camposCtasCorrientes.appendChild(nuevoCampoContainer);
+
+                campoIndex++;
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
