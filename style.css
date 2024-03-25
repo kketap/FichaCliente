@@ -1,0 +1,19 @@
+.razon {
+  width: 10ch;
+}
+
+.texto-adicional {
+  display: none;
+}
+
+.texto-adicional2 {
+  display: none;
+}
+
+p {
+  font-size: 115%;
+}
+
+.row {
+  font-size: large;
+}
