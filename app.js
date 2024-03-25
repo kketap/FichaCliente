@@ -1,11 +1,3 @@
-function increaseWidth(x) {
-  var numberOfCharacters = x.value.length;
-  if (numberOfCharacters >= 10) {
-    var length = numberOfCharacters + "ch";
-    x.style.with = length;
-  }
-}
-
 function loadImage(url) {
   // funcion que muestra el PDF
   return new Promise((resolve) => {
@@ -370,6 +362,9 @@ window.addEventListener("load", async () => {
 
     let nomCargo = document.getElementById("nomCargo").value;
 
+    let rutPEP = document.getElementById("rutPEP").value;
+    let nombreCompletoPEP = document.getElementById("nombreCompletoPEP").value;
+
     await generatePDF( //Pasandole los datos al PDF
       razon,
       rut,
@@ -537,6 +532,9 @@ window.addEventListener("load", async () => {
       inputActCliente,
 
       nomCargo,
+
+      rutPEP,
+      nombreCompletoPEP,
 
     );
   });
@@ -708,6 +706,9 @@ async function generatePDF( //datos que se generaran el el PDF
   inputActCliente,
 
   nomCargo,
+
+  rutPEP,
+  nombreCompletoPEP
 
 ) {
 
@@ -1022,6 +1023,19 @@ async function generatePDF( //datos que se generaran el el PDF
 
   pdf.addImage(signatureImagen, 'PNG', 50, 410, 300, 60);
 
+ 
+  pdf.addPage();
 
-  pdf.save("example.pdf"); // nombre con el cual se descarga el PDF
+  const image5 = await loadImage("(Ficha Persona Jurídica) (1) (6)_page-0005.jpg"); //Página 5 PDF
+
+  pdf.addImage(image5, "PNG", 0, 0, 600, 800);
+
+  const image6 = await loadImage("(Ficha Persona Jurídica) (1) (6)_page-0006.jpg"); //Página 6 PDF
+
+  pdf.addImage(image6, "PNG", 0, 0, 600, 800);
+
+  pdf.text(rutPEP, 100 , 100)
+  pdf.text(nombreCompletoPEP, 200 , 200)
+  
+  pdf.save("Formulario Ficha de Cliente Persona Jurídica.pdf"); // nombre con el cual se descarga el PDF
 }
