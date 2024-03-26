@@ -362,8 +362,12 @@ window.addEventListener("load", async () => {
 
     let nomCargo = document.getElementById("nomCargo").value;
 
-    let rutPEP = document.getElementById("rutPEP").value;
-    let nombreCompletoPEP = document.getElementById("nombreCompletoPEP").value;
+    let opcionClientePEP = document.querySelector("input[name='opcionClientePEP']:checked") ? document.querySelector("input[name='opcionClientePEP']:checked").value : null;
+
+    let rutPEP = document.getElementById("rutPEP") ? document.getElementById("rutPEP").value : null;
+    let nombreCompletoPEP = document.getElementById("nombreCompletoPEP") ? document.getElementById("nombreCompletoPEP").value : null;
+    let PEPagregado = document.querySelector("input[name='PEPagregado']:checked") ? document.querySelector("input[name='PEPagregado']:checked").value : null;
+
 
     await generatePDF( //Pasandole los datos al PDF
       razon,
@@ -533,8 +537,11 @@ window.addEventListener("load", async () => {
 
       nomCargo,
 
+      opcionClientePEP,
+
       rutPEP,
       nombreCompletoPEP,
+      PEPagregado,
 
     );
   });
@@ -707,8 +714,11 @@ async function generatePDF( //datos que se generaran el el PDF
 
   nomCargo,
 
+  opcionClientePEP,
+
   rutPEP,
-  nombreCompletoPEP
+  nombreCompletoPEP,
+  PEPagregado,
 
 ) {
 
@@ -1030,12 +1040,28 @@ async function generatePDF( //datos que se generaran el el PDF
 
   pdf.addImage(image5, "PNG", 0, 0, 600, 800);
 
-  const image6 = await loadImage("(Ficha Persona Jurídica) (1) (6)_page-0006.jpg"); //Página 6 PDF
+  if (parseInt(opcionClientePEP) === 0) {
+    pdf.circle(163, 327, 4, "FD");
+  }else {
+    pdf.circle(248, 327, 4, "FD");
+  }
+  
+  pdf.addPage();
+
+  const image6 = await loadImage("(Ficha Persona Jurídica) (1)-imágenes-6.jpg"); //Página 6 PDF
 
   pdf.addImage(image6, "PNG", 0, 0, 600, 800);
-
-  pdf.text(rutPEP, 100 , 100)
-  pdf.text(nombreCompletoPEP, 200 , 200)
   
+  pdf.setFontSize(11);
+
+  pdf.text(rutPEP, 338 , 196);
+  pdf.text(nombreCompletoPEP, 165 , 196);
+
+  if (parseInt(PEPagregado) === 0) {
+    pdf.circle(527, 189, 4, "FD");
+  } else if (parseInt(PEPagregado) === 1) {
+    pdf.circle(569, 189, 4, "FD");
+  }
+
   pdf.save("Formulario Ficha de Cliente Persona Jurídica.pdf"); // nombre con el cual se descarga el PDF
 }

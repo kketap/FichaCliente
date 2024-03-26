@@ -260,18 +260,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const nuevoClientePEP = `
       <div class="input-group md-6">
         <span class="input-group-text">Nombre Completo y RUT</span>
-        <input type="text" id="nombreCompletoPEP${clienteIndex}" placeholder="Nombre Completo (${clienteIndex})"
+        <input type="text" id="nombreCompletoPEP${clienteIndex}" 
           class="form-control">
-        <input type="text" id="rutPEP${clienteIndex}" placeholder="RUT (${clienteIndex})" class="form-control">
+        <input type="text" id="rutPEP${clienteIndex}"  class="form-control">
 
         <div class="input-group-text">
           <label for="PEPsi">Si</label>
-          <input name="PEPagregado" class="form-check-input mt-0" type="radio" value="${clienteIndex}">
+          <input name="PEPagregado" id="PEPsi${clienteIndex}" class="form-check-input mt-0" type="radio" value="${clienteIndex}">
         </div>
 
         <div class="input-group-text">
           <label for="PEPno">No</label>
-          <input name="PEPagregado" class="form-check-input mt-0" type="radio" value="${1 + clienteIndex}">
+          <input name="PEPagregado" id="PEPno${clienteIndex}" class="form-check-input mt-0" type="radio" value="${1 + clienteIndex}">
         </div>
       </div>
         `;

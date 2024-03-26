@@ -772,21 +772,21 @@
                                 <button type="button" class="btn btn-outline-primary mb-4"
                                     id="agregarClientesPEP">Agregar clientes PEP
                                 </button>
-
                                 <div class="input-group md-6">
                                     <span class="input-group-text">Nombre Completo y RUT</span>
-                                    <input type="text" id="nombreCompletoPEP" placeholder="Nombre Completo"
-                                        class="form-control">
-                                    <input type="text" id="rutPEP" placeholder="RUT " class="form-control">
+                                    <input type="text" id="nombreCompletoPEP" class="form-control">
+                                    <input type="text" id="rutPEP" class="form-control">
 
                                     <div class="input-group-text">
                                         <label for="PEPsi">Si</label>
-                                        <input name="PEPagregado" class="form-check-input mt-0" type="radio" value="0">
+                                        <input name="PEPagregado" id="PEPsi" class="form-check-input mt-0" type="radio"
+                                            value="0">
                                     </div>
 
                                     <div class="input-group-text">
                                         <label for="PEPno">No</label>
-                                        <input name="PEPagregado" class="form-check-input mt-0" type="radio" value="1">
+                                        <input name="PEPagregado" id="PEPno" class="form-check-input mt-0" type="radio"
+                                            value="1">
                                     </div>
                                 </div>
                                 <div id="clientesPEPContainer">
