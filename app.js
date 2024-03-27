@@ -367,7 +367,30 @@ window.addEventListener("load", async () => {
     let rutPEP = document.getElementById("rutPEP") ? document.getElementById("rutPEP").value : null;
     let nombreCompletoPEP = document.getElementById("nombreCompletoPEP") ? document.getElementById("nombreCompletoPEP").value : null;
     let PEPagregado = document.querySelector("input[name='PEPagregado']:checked") ? document.querySelector("input[name='PEPagregado']:checked").value : null;
+    
+    let rutPEP2 = document.getElementById("rutPEP") ? document.getElementById("rutPEP").value : null;
+    let nombreCompletoPEP2 = document.getElementById("nombreCompletoPEP") ? document.getElementById("nombreCompletoPEP").value : null;
+   
+    let rutPEP3 = document.getElementById("rutPEP") ? document.getElementById("rutPEP").value : null;
+    let nombrecompletoPEP3 = document.getElementById("nombreCompletoPEP") ? document.getElementById("nombreCompletoPEP").value : null;
 
+    let rutPEP4 = document.getElementById("rutPEP") ? document.getElementById("rutPEP").value : null;
+    let nombrecompletoPEP4 = document.getElementById("nombreCompletoPEP") ? document.getElementById("nombreCompletoPEP").value : null;
+
+    let rutPEP5 = document.getElementById("rutPEP") ? document.getElementById("rutPEP").value : null;
+    let nombrecompletoPEP5 = document.getElementById("nombreCompletoPEP") ? document.getElementById("nombreCompletoPEP").value : null;
+
+    let rutPEP6 = document.getElementById("rutPEP") ? document.getElementById("rutPEP").value : null;
+    let nombrecompletoPEP6 = document.getElementById("nombreCompletoPEP") ? document.getElementById("nombreCompletoPEP").value : null;
+
+    let rutPEP7 = document.getElementById("rutPEP") ? document.getElementById("rutPEP").value : null;
+    let nombrecompletoPEP7 = document.getElementById("nombreCompletoPEP") ? document.getElementById("nombreCompletoPEP").value : null;
+
+    let rutPEP8 = document.getElementById("rutPEP") ? document.getElementById("rutPEP").value : null;
+    let nombrecompletoPEP8 = document.getElementById("nombreCompletoPEP") ? document.getElementById("nombreCompletoPEP").value : null;
+
+    let rutPEP9 = document.getElementById("rutPEP") ? document.getElementById("rutPEP").value : null;
+    let nombrecompletoPEP9 = document.getElementById("nombreCompletoPEP") ? document.getElementById("nombreCompletoPEP").value : null;
 
     await generatePDF( //Pasandole los datos al PDF
       razon,
@@ -542,6 +565,22 @@ window.addEventListener("load", async () => {
       rutPEP,
       nombreCompletoPEP,
       PEPagregado,
+      rutPEP2,
+      nombreCompletoPEP2,
+      rutPEP3,
+      nombrecompletoPEP3,
+      rutPEP4,
+      nombrecompletoPEP4,
+      rutPEP5,
+      nombrecompletoPEP5,
+      rutPEP6,
+      nombrecompletoPEP6,
+      rutPEP7,
+      nombrecompletoPEP7,
+      rutPEP8,
+      nombrecompletoPEP8,
+      rutPEP9,
+      nombrecompletoPEP9,
 
     );
   });
@@ -719,6 +758,22 @@ async function generatePDF( //datos que se generaran el el PDF
   rutPEP,
   nombreCompletoPEP,
   PEPagregado,
+  rutPEP2,
+  nombreCompletoPEP2,
+  rutPEP3,
+  nombreCompletoPEP3,
+  rutPEP4,
+  nombrecompletoPEP4,
+  rutPEP5,
+  nombreCompletoPEP5,
+  rutPEP6,
+  nombreCompletoPEP6,
+  rutPEP7,
+  nombreCompletoPEP7,
+  rutPEP8,
+  nombreCompletoPEP8,
+  rutPEP9,
+  nombreCompletoPEP9,
 
 ) {
 
@@ -1057,11 +1112,57 @@ async function generatePDF( //datos que se generaran el el PDF
   pdf.text(rutPEP, 338 , 196);
   pdf.text(nombreCompletoPEP, 165 , 196);
 
+  pdf.text(rutPEP, 338, 196);
+  pdf.text(nombreCompletoPEP, 165, 196);
+
+  pdf.text(rutPEP, 338, 196);
+  pdf.text(nombreCompletoPEP, 165, 196);
+
+  pdf.text(rutPEP, 338, 196);
+  pdf.text(nombreCompletoPEP, 165, 196);
+
+  pdf.text(rutPEP, 338, 196);
+  pdf.text(nombreCompletoPEP, 165, 196);
+
+  pdf.text(rutPEP, 338, 196);
+  pdf.text(nombreCompletoPEP, 165, 196);
+
+  pdf.text(rutPEP, 338, 196);
+  pdf.text(nombreCompletoPEP, 165, 196);
+
+  pdf.text(rutPEP, 338, 196);
+  pdf.text(nombreCompletoPEP, 165, 196);
+
+  pdf.text(rutPEP, 338, 196);
+  pdf.text(nombreCompletoPEP, 165, 196);
+
+  pdf.text(rutPEP, 338, 196);
+  pdf.text(nombreCompletoPEP, 165, 196);
+
   if (parseInt(PEPagregado) === 0) {
     pdf.circle(527, 189, 4, "FD");
   } else if (parseInt(PEPagregado) === 1) {
     pdf.circle(569, 189, 4, "FD");
+  } else if (parseInt(PEPagregado)=== 2) {
+    pdf.circle(568, 189, 4, "FD");
+  } else if (parseInt(PEPagregado)===3) {
+    pdf.circle(590, 189, 4, "FD");
+  } else if (parseInt(PEPagregado)===4){
+    pdf.circle(569, 189, 4, "FD");
+  } else if (parseInt(PEPagregado)===5){
+    pdf.circle(527, 189, 4, "FD");
+  } else if (parseInt(PEPagregado)===6){
+    pdf.circle(527, 189, 4, "FD");
+  }else if (parseInt(PEPagregado)===7){
+    pdf.circle(527, 189, 4, "FD");
+  }else if (parseInt(PEPagregado)===8){
+    pdf.circle(527, 189, 4, "FD");
+  }else if (parseInt(PEPagregado)===9){
+    pdf.circle(527, 189, 4, "FD");
   }
+
+
+
 
   pdf.save("Formulario Ficha de Cliente Persona Jurídica.pdf"); // nombre con el cual se descarga el PDF
 }
